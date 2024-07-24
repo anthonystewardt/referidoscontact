@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import {Button} from "@nextui-org/react";
 import logoContact from "@/../../public/logocontactbg.png";
-import SelectRoleCard from '@/app/components/cards/selectRole/SelectRoleCard';
+import SelectRoleCard from '@/components/cards/selectRole/SelectRoleCard';
 import iconRegister1 from '@/../../public/registergroup1.png';
 import iconRegister2 from '@/../../public/icongroup2.png';
 

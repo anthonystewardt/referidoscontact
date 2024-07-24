@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import logoContact from '@/../../public/logocontactbg.png';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
-import RegisterForm from '@/app/components/forms/RegisterForm';
+import RegisterForm from '@/components/forms/RegisterForm';
 import type { Metadata } from 'next'
 
 

@@ -4,8 +4,8 @@ import imageAnimate from '@/../../public/personanimate2.png'
 import { EmblaOptionsType } from 'embla-carousel'
 
 
-import CardInfo1 from '../components/cards/CardInfo1';
-import EmblaCarousel from '../components/cards/Emblacarousel';
+import CardInfo1 from '../../components/cards/CardInfo1';
+import EmblaCarousel from '../../components/cards/Emblacarousel';
 
 const OPTIONS: EmblaOptionsType = { loop: true }
 const SLIDE_COUNT = 5
