@@ -26,8 +26,26 @@ model User {
   country   String
   codePhone String
   phone     String
+  active   Boolean  @default(false)
+  credit    Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Referreal Referreal[]
 }
 
 
+model Referreal {
+  id        String   @id @default(cuid())
+  code      String   
+  User      User     @relation(fields: [userId], references: [id])
+  userId    String
+  active    Boolean  @default(false)
+  nameReferreal String
+  lastnameReferreal String
+  emailReferreal String
+  phoneReferreal String
+  dniReferreal String
+  positionReferreal String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

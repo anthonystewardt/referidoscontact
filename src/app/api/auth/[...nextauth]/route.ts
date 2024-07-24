@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 import bcrypt from 'bcrypt'
 import prisma from '@/libs/db';
+import { setCookie } from 'cookies-next';
+
 
 export const authOptions = {
   providers: [
@@ -22,12 +24,12 @@ export const authOptions = {
 
         if (!userFound) throw new Error('No user found')
 
-        console.log(userFound)
-
         const matchPassword = await bcrypt.compare(credentials!.password, userFound.password)
 
         if (!matchPassword) throw new Error('Wrong password')
 
+          setCookie('userId', userFound.id);
+        
         return {
             id: userFound.id,
             name: userFound.username,
@@ -38,7 +40,28 @@ export const authOptions = {
   ],
   pages: {
     signIn: "/auth/login",
-  }
+  },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }: any) {
+      const userFound = await prisma.user.findUnique({
+        where: {
+          email: credentials.email,
+        },
+      });
+      setCookie('userId', userFound?.id, { req: credentials.req, res: credentials.res });
+      return true;
+    },
+    async session({ session, token, user }: any) {
+      session.userId = token.sub;
+      return session;
+    },
+    async jwt({ token, user }: any) {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

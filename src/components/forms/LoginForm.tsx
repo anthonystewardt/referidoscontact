@@ -10,7 +10,8 @@ import { EyeFilledIcon } from '@/icons/FileEyedSlashIcon';
 import { EyeSlashFilledIcon } from '@/icons/EyeFilledIcon';
 import { Toaster } from 'react-hot-toast';
 import { notifyError, notifySuccess } from '@/helpers/notifies';
-
+import { setCookie } from 'cookies-next';
+import Cookies from 'js-cookie';
 
 
 interface Props {
@@ -44,6 +45,11 @@ const LoginUserForm = () => {
       if (res!.error) {
         notifyError(res!.error)
       } else {
+        // http://localhost:3000/api/users/email/anthonysa0813@gmail.com
+        const userfound = await fetch(`/api/users/email/${data.email}`).then((res) => res.json()).then((data) => {
+        Cookies.set('userId', data.users.id)
+
+        })
         router.push('/dashboard')
         router.refresh()
       }
