@@ -35,3 +35,38 @@ export async function GET(request: Request, {params}: Segments) {
   }
 
 }
+
+// method: PUT
+
+export async function PUT(request: Request, {params}: Segments) { 
+
+  try {
+    const {id} = params
+    const body = await request.json()
+    const users = await prisma.user.update({
+      where: {
+        id
+      },
+      data: {
+        ...body
+      }
+    })
+    return NextResponse.json({
+      users,
+      status: 200
+    }, {
+      status: 200
+    })
+  } catch (error) {
+    return NextResponse.json({
+      error,
+      status: 500
+    }, {
+      status: 500
+    })
+  }
+}
+
+
+
+

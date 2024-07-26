@@ -1,10 +1,32 @@
 import React from 'react'
 import logo from '@/../../public/logocontactbg.png'
 import {  HomeIcon, AvatarIcon, GearIcon, ExitIcon } from '@radix-ui/react-icons'
+import NavigationItem from '@/components/navbar/dashboard/NavigationItem';
 
 interface Props {
   children: React.ReactNode
 }
+
+
+const naviagtionList = [
+  {
+    name: 'Dashboard',
+    icon: HomeIcon,
+    route: '/dashboard'
+  },
+  {
+    name: 'Perfil',
+    icon: AvatarIcon,
+    route: '/dashboard/profile'
+  },
+  // {
+  //   name: 'Configuración',
+  //   icon: GearIcon,
+  //   route: '/dashboard/settings'
+  // }
+]
+
+
 
 const LayoutDashboard = ({children}: Props) => {
   return (
@@ -15,7 +37,7 @@ const LayoutDashboard = ({children}: Props) => {
             <img src={logo.src} alt="logo" className="h-[100px] w-[160px]" />
           </div>
           <ul className="flex flex-col gap-2 mt-10">
-            <li className="px-4 flex items-center gap-3 py-3 rounded-lg bg-sky-100 text-blue-900 w-full">
+            {/* <li className="px-4 flex items-center gap-3 py-3 rounded-lg bg-sky-100 text-blue-900 w-full">
               <HomeIcon className="h-6 w-6" />
               Dashboard</li>
             <li className="px-4 py-3 flex items-center gap-2 rounded-lg  w-full">
@@ -23,7 +45,15 @@ const LayoutDashboard = ({children}: Props) => {
               Profile</li>
             <li className="px-4 py-3 flex items-center gap-2 rounded-lg  w-full">
               <GearIcon className="h-6 w-6" />
-              Settings</li>
+              Settings</li> */}
+            {
+              naviagtionList.map((item, index) => (
+                <NavigationItem key={index} title={item.name} path={item.route} >
+                  <item.icon className="h-6 w-6" />
+                </NavigationItem>
+              ))
+            }
+
           </ul>
         </div>
         <div className="pb-10 flex justify-center gap-2 ">
@@ -31,7 +61,7 @@ const LayoutDashboard = ({children}: Props) => {
           <span>Salir</span>
         </div>
       </div>
-      <div className="col-span-10 px-20 py-10 bg-slate-100 h-screen">
+      <div className="col-span-10 px-20 py-10 bg-slate-100 h-screen overflow-y-auto">
         <div className="">
           
           {children}
