@@ -3,6 +3,8 @@ import DataTable from 'react-data-table-component';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { Referreal } from '@prisma/client';
+import { transformDate } from '@/helpers/transformDate';
+import { Span } from 'next/dist/trace';
 const columns = [
   {
     name: 'ID',
@@ -17,12 +19,12 @@ const columns = [
 		selector: (row: any) => `${row.positionReferreal}`,
 	},
   {
-    name: 'Fecha de registro',
-    selector: (row: any) => `${row.createdAt}`,
+    name: 'Fecha de registro (mes/día - hora)',
+    selector: (row: any) => `${transformDate(row.createdAt)}` ,
   },
   {
     name: 'Estado',
-    selector: (row: any) => `${row.active ? 'Activo' : 'Inactivo'}`,
+    selector: (row: any) => row.active ? <span className="text-green-500 font-semibold">Aceptado</span> : <span className="text-red-500 font-semibold">Rechazado</span>,
   }
 ]
 
@@ -86,10 +88,10 @@ const ViewDataReferrealsByReferreal = () => {
 
 
   return (
-    <DataTable title="Lista de Referidos" 
+    <DataTable title="Lista de tus Referidos" 
       className="rounded-lg" style={{
       borderRadius: '10px',
-    }} columns={columns} data={refersList} pagination />
+    }} columns={columns as any} data={refersList} pagination />
   )
 }
 

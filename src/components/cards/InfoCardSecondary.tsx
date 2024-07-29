@@ -36,7 +36,7 @@ const InfoCardSecondary =  () => {
           </div>
           <div className="flex flex-col ">
             <h2 className="text-3xl font-semibold">{
-              `${ferrealNumber}` || 0
+              `${ferrealNumber}`
               }</h2>
             <p className="text-1xl font-semibold">Referidos </p>
           </div>

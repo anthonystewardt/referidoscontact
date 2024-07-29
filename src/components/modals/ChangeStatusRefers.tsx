@@ -8,10 +8,9 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 
 interface Props {
   refer: any;
-  router: AppRouterInstance
 }
 
-export default function ChangeStatusReferModal({ refer, router }: Props) {
+export default function ChangeStatusReferModal({ refer }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
  
   const [isSubmitting, setIsSubmitting] = useState(false);

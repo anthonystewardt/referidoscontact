@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": " npm run prisma:deploy && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:deploy": "npx prisma migrate deploy && npx prisma generate"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.6",
@@ -31,6 +32,7 @@
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
     "react-select": "^5.8.0",
+    "sharp": "^0.33.4",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
@@ -40,7 +42,6 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "prisma": "^5.17.0",

@@ -17,7 +17,7 @@ const NavigationItem = ({title, path, children}: Props) => {
     <Link
     href={path}
       className={`px-4 flex items-center gap-3 py-3 rounded-lg  w-full ${
-        pathname === path ? "bg-sky-100 " : ""
+        pathname === path ? "bg-blue-800 text-zinc-100" : ""
       }`}
     >
       {children}

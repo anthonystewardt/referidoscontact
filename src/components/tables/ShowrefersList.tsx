@@ -41,13 +41,17 @@ const ShowrefersList = () => {
       selector: (row: any) => `${row.positionReferreal}`,
     },
     {
+      name: 'Referido de:',
+      selector: (row: any) => `${row.User.name} ${row.User.lastname}`,
+    },
+    {
       name: 'Estado',
       selector: (row: any) => row.active ? (<p className="text-green-500 font-semibold">Admitido</p>) : (<p className="text-red-500 font-semibold">No admitido</p>)
     },
     {
       name: 'Cambiar estado',
       selector: (row: any) => (
-        <ChangeStatusReferModal refer={row} router={router} />
+        <ChangeStatusReferModal refer={row} />
       ), // Modify the selector function to return a string or Primitive type
     },
     {

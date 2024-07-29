@@ -1,14 +1,11 @@
 "use client";
-import prisma from '@/libs/db';
-import { BackpackIcon, HeartFilledIcon } from '@radix-ui/react-icons';
+
 import { useEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { get } from 'http';
-import { ReferrealI } from '@/interface/referreals';
 import { UserResonse } from '@/interface/user';
 import { FiCopy } from 'react-icons/fi';
 import { sumaTotal } from '@/helpers/sumaTotal';
-
+import { CiDollar } from "react-icons/ci";
 
 interface Props {
   userId: string
@@ -38,7 +35,7 @@ const InfoCreditUserCard =  () => {
   return (
     <div className="col-span-3 flex gap-3  px-8 py-4 rounded-lg shadow-sm bg-white">
           <div className=" rounded-full h-20 w-20 flex items-center justify-center bg-sky-100">
-            <FiCopy className="h-10 w-10 text-blue-600" />
+            <CiDollar className="h-14 w-14 text-blue-600 font-bold" />
           </div>
           <div className="flex flex-col ">
             <h2 className="text-3xl font-semibold">{

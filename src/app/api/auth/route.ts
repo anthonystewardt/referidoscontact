@@ -45,6 +45,7 @@ export async function POST(request: Request) {
         password: hashedPassword,
         country: data.country,
         phone: data.cellphone,
+        isEmployee: data.isEmployee,
         role: 'user',
         username: data.email,
         codePhone: data.code

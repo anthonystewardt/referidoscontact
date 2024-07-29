@@ -129,7 +129,7 @@ const RegisterForm = ({type}: Props) => {
           )
         }
           <div className="flex flex-col">
-            <h1 className="text-3xl text-center font-bold ">Registrarse </h1>
+            <h1 className="text-3xl text-center font-bold ">Registrarse - {type}</h1>
             <p className="mt-3 text-sm text-gray-600">Llena el siguiente formulario para activar su cuenta de referidos.</p>
           </div>
           <div className="grid grid-cols-6 gap-5 mt-5">

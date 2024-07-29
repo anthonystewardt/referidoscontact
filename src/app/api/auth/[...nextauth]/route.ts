@@ -6,7 +6,7 @@ import prisma from '@/libs/db';
 import { setCookie } from 'cookies-next';
 
 
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",

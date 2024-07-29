@@ -38,7 +38,7 @@ const columns = [
   {
     name: 'Cambiar estado',
     selector: (row: any) => (
-      <ChangeStatusReferModal />
+      <ChangeStatusReferModal refer={row} />
     ), // Modify the selector function to return a string or Primitive type
   },
   {
@@ -48,7 +48,7 @@ const columns = [
   {
     name: 'Cambiar estado de pago',
     selector: (row: any) => (
-      <ChangeStatusReferModal />
+      <ChangeStatusReferModal refer={row} />
     ), // Modify the selector function to return a string or Primitive type
   },
   {

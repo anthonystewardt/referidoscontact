@@ -31,6 +31,10 @@ const columns = [
     selector: (row: any) => `${row.dni}`,
   },
   {
+    name: '¿Es empleador?',
+    selector: (row: any) => `${row.isEmployee ? 'Si' : 'No'}`,
+  },
+  {
     name: 'Pais',
     selector: (row: any) => `${row.country}`,
   },
