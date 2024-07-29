@@ -7,6 +7,7 @@ import { get } from 'http';
 import { ReferrealI } from '@/interface/referreals';
 import { UserResonse } from '@/interface/user';
 import { FiCopy } from 'react-icons/fi';
+import { sumaTotal } from '@/helpers/sumaTotal';
 
 
 interface Props {
@@ -30,7 +31,8 @@ const InfoCreditUserCard =  () => {
     const response = await fetch(`http://localhost:3000/api/users/${currentId}`)
     const data: UserResonse = await response.json()
     
-    setFerrealnumber(data.users.credit)
+    // setFerrealnumber(data.users.credit || 0)
+    setFerrealnumber(sumaTotal({refers: data.users.Referreal}))
   }
 
   return (

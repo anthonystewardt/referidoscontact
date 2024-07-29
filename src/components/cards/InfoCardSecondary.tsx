@@ -25,6 +25,7 @@ const InfoCardSecondary =  () => {
   const getInfo = async () => {
     const response = await fetch(`http://localhost:3000/api/referreals/${currentId}`)
     const data: ReferrealI = await response.json()
+    console.log(data)
     setFerrealnumber(data.referreals?.length ?? 0)
   }
 
@@ -35,7 +36,7 @@ const InfoCardSecondary =  () => {
           </div>
           <div className="flex flex-col ">
             <h2 className="text-3xl font-semibold">{
-              `+${ferrealNumber}` || 0
+              `${ferrealNumber}` || 0
               }</h2>
             <p className="text-1xl font-semibold">Referidos </p>
           </div>

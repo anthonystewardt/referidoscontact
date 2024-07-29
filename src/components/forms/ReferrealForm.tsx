@@ -93,18 +93,15 @@ const ReferrealForm = ({id,refer}: Props) => {
       notifyError("Error al registrar usuario") 
     }
   }
-  
-
-
 
   return (
-    <form className="w-1/2" onSubmit={ handleSubmit(onSubmit) }>
+    <form className="md:w-2/3 lg:w-1/2 w-full " onSubmit={ handleSubmit(onSubmit) }>
     <Toaster />
     <h1 className="text-3xl font-bold text-center mb-5">Postular</h1>
     <p className="text-xs text-gray-400 pb-2">Referido de: {refer?.name}</p>
     
-    <div className="grid grid-cols-6 gap-3">
-      <div className="col-span-3">
+    <div className="grid grid-cols-6 gap-3 px-4">
+      <div className="lg:col-span-3 col-span-full">
         <Input type="text" label="Nombres"
           {...register("names", { required: true })}
         />
@@ -112,7 +109,7 @@ const ReferrealForm = ({id,refer}: Props) => {
           errors.names && <span className="text-red-500 text-xs">Este campo es requerido</span>
         }
       </div>
-      <div className="col-span-3">
+      <div className="lg:col-span-3 col-span-full">
         <Input type="text" label="Apellidos"
           {...register("lastnames", { required: true })}
         />
@@ -120,7 +117,7 @@ const ReferrealForm = ({id,refer}: Props) => {
           errors.lastnames && <span className="text-red-500 text-xs">Este campo es requerido</span>
         }
       </div>
-      <div className="col-span-3">
+      <div className="lg:col-span-3 col-span-full">
         <Input type="email" label="Correo"
           {...register("email", { required: true })}
         />
@@ -128,7 +125,7 @@ const ReferrealForm = ({id,refer}: Props) => {
           errors.email && <span className="text-red-500 text-xs">Este campo es requerido</span>
         }
       </div>
-      <div className="col-span-3">
+      <div className="lg:col-span-3 col-span-full">
         <Input type="text" label="Celular"
           {...register("phone", { required: true })}
         />
@@ -136,7 +133,7 @@ const ReferrealForm = ({id,refer}: Props) => {
           errors.phone && <span className="text-red-500 text-xs">Este campo es requerido</span>
         }
       </div>
-      <div className="col-span-3">
+      <div className="lg:col-span-3 col-span-full">
         <Input type="text" label="DNI"
           {...register("dni", { required: true })}
         />
@@ -144,7 +141,7 @@ const ReferrealForm = ({id,refer}: Props) => {
           errors.dni && <span className="text-red-500 text-xs">Este campo es requerido</span>
         }
       </div>
-      <div className="col-span-3">
+      <div className="lg:col-span-3 col-span-full">
       {
         jobs.length > 0 && (
           <Select label="Puesto"

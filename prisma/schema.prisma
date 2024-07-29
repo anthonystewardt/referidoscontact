@@ -23,6 +23,7 @@ model User {
   password  String
   role      String   @default("user")
   dni      String   @unique
+  isEmployee Boolean  @default(false)
   country   String
   codePhone String
   phone     String
@@ -46,7 +47,10 @@ model Referreal {
   emailReferreal String
   phoneReferreal String
   dniReferreal String
+  typePaid     String @default("credit")
+  mountPaid    Float  @default(0)
   positionReferreal String
+  paid     Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

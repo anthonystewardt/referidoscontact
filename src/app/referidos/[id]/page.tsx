@@ -27,9 +27,9 @@ const ReferidoPage = async  ({params}: Props ) => {
 
 
   return (
-    <main className="grid grid-cols-12 gap-3 p-4 h-screen">
-      <div className="col-span-4 flex justify-center  rounded-lg bg-blue-700 h-full">
-       <div className="h-full px-16 flex flex-col justify-between py-10   ">
+    <main className="grid grid-cols-12 gap-3 md:p-4 p-2 h-screen">
+      <div className="order-3 md:-order-1 mt-10 md:mt-0 col-span-full md:col-span-6 lg:col-span-4 flex justify-center  rounded-lg bg-blue-700 h-full">
+       <div className="h-full md:px-16 px-8 flex flex-col justify-between py-10   ">
         <div className="">
           <img src={logo.src} alt="logo" className="h-[90px] rounded-xl w-[160px]" /> 
         </div>
@@ -52,7 +52,7 @@ const ReferidoPage = async  ({params}: Props ) => {
         </div>
        </div>
       </div>
-      <div className="col-span-8 flex justify-center items-center h-full">
+      <div className="col-span-full  md:col-span-6 lg:col-span-8 flex justify-center items-center h-full">
        <ReferrealForm id={params.id} refer={refer} />
       </div>
     </main>

@@ -2,6 +2,9 @@ import React from 'react'
 import logo from '@/../../public/logocontactbg.png'
 import {  HomeIcon, AvatarIcon, GearIcon, ExitIcon } from '@radix-ui/react-icons'
 import NavigationItem from '@/components/navbar/dashboard/NavigationItem';
+import SignoutDashboardButton from '@/components/buttons/SignoutDashboard';
+
+
 
 interface Props {
   children: React.ReactNode
@@ -56,9 +59,8 @@ const LayoutDashboard = ({children}: Props) => {
 
           </ul>
         </div>
-        <div className="pb-10 flex justify-center gap-2 ">
-          <ExitIcon className="h-6 w-6" />
-          <span>Salir</span>
+        <div className="flex justify-center mb-10">
+          <SignoutDashboardButton />
         </div>
       </div>
       <div className="col-span-10 px-20 py-10 bg-slate-100 h-screen overflow-y-auto">
@@ -70,4 +72,4 @@ const LayoutDashboard = ({children}: Props) => {
     </div>
   )
 }
-export default LayoutDashboard
+export default LayoutDashboard;

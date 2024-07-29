@@ -42,7 +42,7 @@ async function POST(request: Request) {
       data: {
         ...body,
         username: body.email,
-        role: "admin",
+        role: body.role || 'admin',
         password: hashedPassword
       }
     });
@@ -66,4 +66,28 @@ async function POST(request: Request) {
   }
 }
 
-export { POST };
+
+async function GET(request: Request) {
+  try {
+    const admins = await prisma.admin.findMany();
+    return NextResponse.json({
+      admins,
+      status: 200
+    }, {
+      status: 200
+    });
+
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching admins:', error);
+    return NextResponse.json({
+      message: 'Internal server error',
+      status: 500
+    }, {
+      status: 500
+    });
+  }
+}
+
+
+export { POST, GET };

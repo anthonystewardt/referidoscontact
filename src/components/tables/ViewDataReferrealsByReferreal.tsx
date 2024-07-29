@@ -86,7 +86,8 @@ const ViewDataReferrealsByReferreal = () => {
 
 
   return (
-    <DataTable title="Lista de Referidos"  className="rounded-lg" style={{
+    <DataTable title="Lista de Referidos" 
+      className="rounded-lg" style={{
       borderRadius: '10px',
     }} columns={columns} data={refersList} pagination />
   )

@@ -2,10 +2,17 @@ import prisma from '@/libs/db';
 import { NextResponse, NextRequest } from 'next/server'
 
 export async function GET(request: Request) { 
-
-  return new Response(JSON.stringify({
-    message: 'Hello World'
-  }), { status: 200 } );
+  try {
+    const referreal = await prisma.referreal.findMany({
+      include: {
+        User: true
+      }
+    })
+    return NextResponse.json({ referreal, status: 200 }, { status: 200 })
+  } catch (error) {
+    return NextResponse.json({ message: error }, { status: 500 })
+  }
+  
 }
 
 export async function POST(request: Request) {

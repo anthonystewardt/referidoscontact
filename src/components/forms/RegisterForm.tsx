@@ -11,6 +11,7 @@ import { EyeFilledIcon } from '@/icons/FileEyedSlashIcon';
 import { EyeSlashFilledIcon } from '@/icons/EyeFilledIcon';
 import { Toaster } from 'react-hot-toast';
 import { notifyError, notifySuccess } from '@/helpers/notifies';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -38,6 +39,7 @@ const RegisterForm = ({type}: Props) => {
   const [currentCountry, setCurrentCountry] = useState({} as CountriesI);
   const [isVisible, setIsVisible] = useState(false);
   const [currentErrorMessage, setCurrentErrorMessage] = useState("")
+  const router = useRouter()
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   
@@ -74,6 +76,7 @@ const RegisterForm = ({type}: Props) => {
           lastnames: data.lastnames,
           email: data.email,
           cellphone: data.cellphone,
+          isEmployee: type === "Empleador" ? true : false,
           password: data.password,
           country: currentCountry. translations["spa"].common ?? currentCountry.name.common,
           code: `${currentCountry.idd.root}${currentCountry.idd.suffixes?.[0] ?? ''}`
@@ -93,6 +96,7 @@ const RegisterForm = ({type}: Props) => {
       if(response.status === 201) {
         console.log({response})
         notifySuccess(response.message)
+        router.push('/auth/login')
         return;
       }
     } catch (error) {
@@ -125,7 +129,7 @@ const RegisterForm = ({type}: Props) => {
           )
         }
           <div className="flex flex-col">
-            <h1 className="text-3xl text-center font-bold ">Registrarse - {type}</h1>
+            <h1 className="text-3xl text-center font-bold ">Registrarse </h1>
             <p className="mt-3 text-sm text-gray-600">Llena el siguiente formulario para activar su cuenta de referidos.</p>
           </div>
           <div className="grid grid-cols-6 gap-5 mt-5">

@@ -14,6 +14,7 @@ export interface UserI {
   dni:       string;
   country:   string;
   codePhone: string;
+  isEmployee: boolean;
   phone:     string;
   active:    boolean;
   credit:    number;
@@ -32,7 +33,10 @@ export interface Referreal {
   emailReferreal:    string;
   phoneReferreal:    string;
   dniReferreal:      string;
+  typePaid:          string;
+  mountPaid:         number;
   positionReferreal: string;
+  paid:              boolean;
   createdAt:         Date;
   updatedAt:         Date;
 }

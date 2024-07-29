@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Cookies from "js-cookie";
 import { get } from 'http';
 import { ReferrealI } from '@/interface/referreals';
+import { set } from 'react-hook-form';
 
 
 interface Props {
@@ -28,6 +29,7 @@ const InfoCardActive =  () => {
     const response = await fetch(`http://localhost:3000/api/referreals/${currentId}`)
     const data: ReferrealI = await response.json()
     const referreals = data.referreals?.filter((referreal) => referreal.active === true)
+    if(!referreals) return setFerrealnumber(0)
     setFerrealnumber(referreals?.length)
   }
 

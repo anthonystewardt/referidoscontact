@@ -23,7 +23,7 @@ const RegisterPage = () => {
         <p className="text-gray-400 mt-2">Para empezar a referir debes de crearte una cuenta y recibiràs tu enlace ùnico:</p>
         <div className="my-8 flex flex-col gap-3">
          <SelectRoleCard to="/auth/register/employee" icon={iconRegister1} title="Empleador" description={"Usuarios que ya se encuentran laborando en la empresa"} />
-         <SelectRoleCard to="/auth/register/employee" icon={iconRegister2} title="Externo" description={"Usuarios que son externos a la empresa"} />
+         <SelectRoleCard to="/auth/register/externo" icon={iconRegister2} title="Externo" description={"Usuarios que son externos a la empresa"} />
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ type Inputs = {
 }
 
 
-const LoginUserForm = () => { 
+const LoginUserForm = () => {
   const { register, handleSubmit, watch, formState: { errors }, getValues } = useForm<Inputs>()
   const [isVisible, setIsVisible] = useState(false);
   const [currentErrorMessage, setCurrentErrorMessage] = useState("")
