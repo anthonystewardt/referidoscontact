@@ -25,7 +25,7 @@ const InfoCreditUserCard =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`http://localhost:3000/api/users/${currentId}`)
+    const response = await fetch(`/api/users/${currentId}`)
     const data: UserResonse = await response.json()
     
     // setFerrealnumber(data.users.credit || 0)

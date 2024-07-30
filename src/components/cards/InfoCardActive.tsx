@@ -26,7 +26,7 @@ const InfoCardActive =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`http://localhost:3000/api/referreals/${currentId}`)
+    const response = await fetch(`/api/referreals/${currentId}`)
     const data = await response.json()
     console.log(data)
     const referreals = data.referreal?.filter((referreal: any) => referreal.active === true)

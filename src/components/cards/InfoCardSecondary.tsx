@@ -23,7 +23,7 @@ const InfoCardSecondary =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`http://localhost:3000/api/referreals/${currentId}`)
+    const response = await fetch(`/api/referreals/${currentId}`)
     const data = await response.json()
     setFerrealnumber(data.referreal?.length ?? 0)
   }
