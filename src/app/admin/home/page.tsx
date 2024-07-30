@@ -3,8 +3,10 @@ import ShowrefersList from '@/components/tables/ShowrefersList';
 import ShowrefersListSearch from '@/components/tables/ShowUserBySearch';
 import ShowUsersList from '@/components/tables/ShowUsersList';
 import { Input } from '@nextui-org/react';
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
+
+
 
 const AdminHomePage = () => {
   const [showRefers, setShowRefers] = useState(false)
@@ -13,6 +15,7 @@ const AdminHomePage = () => {
   const [showSearchList, setShowSearchList] = useState(false)
   const [showSearchUserRefList, setshowSearchUserRefList] = useState(false)
   const [currentShowStr, setCurrentShowStr] = useState("refers")
+
 
   useEffect(() => {
     setShowRefers(true)
@@ -39,6 +42,7 @@ const AdminHomePage = () => {
 
   const onSubmitSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    
     // // http://localhost:3000/api/referreals/dni/816371382
     // const  {data} = await axios.get(`/api/referreals/dni/${valueSearch}`)
     if(showRefers){

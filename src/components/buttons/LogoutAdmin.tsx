@@ -1,4 +1,5 @@
 "use client";
+import { Button } from '@nextui-org/react';
 import { ExitIcon } from '@radix-ui/react-icons';
 import { useRouter } from 'next/navigation';
 
@@ -26,10 +27,12 @@ const LogoutAdmin = () => {
     }
   }
   return (
-    <button onClick={logout} className="pb-10 flex justify-center gap-2 ">
-      <ExitIcon className="h-6 w-6" />
-      <span>Salir</span>
-    </button>
+    <div className="flex items-center justify-center pb-5">
+      <Button color="default" onClick={logout} className=" flex justify-center items-center gap-2 ">
+        <ExitIcon className="h-6 w-6" />
+        <span>Salir</span>
+      </Button>
+    </div>
   )
 }
 export default LogoutAdmin
