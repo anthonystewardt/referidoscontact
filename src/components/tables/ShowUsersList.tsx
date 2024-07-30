@@ -76,7 +76,7 @@ const ShowUsersList = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold">Lista de Usuarios registrados</h1>
-      <p className='text-gray-600'>Lista de usuarios quienes pueden referir</p>
+      <p className='text-gray-6git00'>Lista de usuarios quienes pueden referir</p>
       <DataTable columns={columns as any} data={refersData} pagination />
     </div>
   )
