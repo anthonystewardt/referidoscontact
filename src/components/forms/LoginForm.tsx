@@ -2,7 +2,7 @@
 import { signIn } from "next-auth/react";
 import {useRouter} from 'next/navigation'
 import { Input, Button} from "@nextui-org/react";
-import { useForm, SubmitHandler, set } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 
 import { useState } from 'react';
 
@@ -13,6 +13,8 @@ import { notifyError, notifySuccess } from '@/helpers/notifies';
 import { setCookie } from 'cookies-next';
 import Cookies from 'js-cookie';
 import { Spinner } from "@nextui-org/spinner";
+import { sendEmailForgetPasswordUser } from "@/helpers/emails/ForgetPasswordUser";
+import ForgetPasswordModalUser from "../modals/ForgetPasswordMmodalUser";
 
 
 interface Props {
@@ -66,6 +68,10 @@ const LoginUserForm = () => {
   }
   
 
+  // const sendEmailWhenForgetPassword = async () => {
+  //   await sendEmailForgetPasswordUser()
+  // }
+
 
 
 
@@ -116,14 +122,15 @@ const LoginUserForm = () => {
             />
               {errors.password && <span className="text-red-500 text-xs">Este campo es requerido</span>}
             </div>
-           
             <div className="col-span-6">
             <Button className="w-full" type="submit" color="primary">
               {showSpinner ? <Spinner color="white" />  : "Ingresar"}	
-              </Button>
-            </div>
+            </Button>
+            {/* <Button className="mt-3 w-full bg-transparent" size="lg" color="default" >Olvidé mi contraseña</Button> */}
+          </div>
           </div>
         </form>
+              <ForgetPasswordModalUser />
     </div>
   )
 }

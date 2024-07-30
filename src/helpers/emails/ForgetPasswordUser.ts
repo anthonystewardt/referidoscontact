@@ -1,4 +1,5 @@
 "use server";
+import { User } from "@prisma/client";
 import nodemailer from "nodemailer";
 
 // Configurar el transporter con las variables de entorno
@@ -12,240 +13,202 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendEmailForgetPasswordUser = async (to: string, emailUser: string) => {
+export const sendEmailForgetPasswordUser = async (to: string, user: User) => {
   // Configurar las opciones del correo electrónico
   const mailOptions = {
     from: process.env.MAILER_AUTH,
     to,
     subject: "Bienvenido a la plataforma de referidos de Contactamericas",
     html: `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>HTML5 Email Template Practice</title>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-   <style>
-      body {
-         margin: 0;
-         background-color: #D8DBDB;
-         padding: 20px;
-         font-family: 'Roboto', Arial, sans-serif; /* Google Font, Web Safe Font, sans-serif */
-         font-size: 18px;
-         color: #565859;
-      }
-      .wrapper {
-         background-color: #f6faff;
-         max-width: 700px;
-         margin: 0 auto;
-         box-shadow: 0 0 10px #616e79;
-         border-top: 10px solid #1d4ed8;
-         border-radius: 5px 5px 10px 10px;
-      }
-      .logo {
-         text-align: center;
-         padding: 1% 0;
-      }
-      .logo img {
-         max-width: 250px;
-      }
-      img {
-         max-width: 100%;
-      }
-      .three-columns {
-         width: 29.3%;
-         padding: 5% 2% 6%;
-         text-align: center;
-         float: left;
-         margin: 15px 0 32px;
-      }
-      .three-columns img {
-         max-width: 135px;
-      }
-      h2 {
-         font-weight: 700;
-         font-size: 28px;
-         letter-spacing: 1px;
-         margin: 20px 0 8px;
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+   <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+   <meta name="x-apple-disable-message-reformatting">
+   <meta name="color-scheme" content="light dark">
+   <meta name="supported-color-schemes" content="light dark">
+	<title>Password Reset Practice Activity</title>
+   <!--[if mso]>
+      <noscript>
+         <xml>
+            <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+         </xml>
+      </noscript>
+   <![endif]-->
+   <style type="text/css">
+      table {
+			border-spacing: 0;
+         border-collapse: collapse;
+		}
+      td {
+         padding: 0;
       }
       p {
-         line-height: 26px;
-         padding-bottom: 15px;
+         font-size: 16px;
       }
-      .btn {
-         background-color: #1d4ed8;
-         color: #fff;
+      img {
+         border: 0;
+      }
+      a {
          text-decoration: none;
-         padding: 10px 14px;
-         font-size: 20px;
-         font-weight: 600;
-         letter-spacing: 1px;
-         border-radius: 6px;
-         box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-         transition: .4s;
+         color: #000;
       }
-      .btn:hover {
-         background-color: #1d4ed8;
-         color: #fff;
+      .content {
+         line-height: 20px;
+         font-size: 16px;
       }
-      hr.orange {
-         border: 1px solid #1d4ed8;
-         width: 96%;
-         margin: 15px auto;
+
+      u + .body .gmail-blend-screen { background:#000; mix-blend-mode:screen; }
+		u + .body .gmail-blend-difference { background:#000; mix-blend-mode:difference; }
+
+      .ExternalClass {
+         width: 100%;
       }
-      .two-columns {
-         float: left;
-         width: 46%;
-         padding: 5% 2%;
-         margin: 10px 0 26px;
+
+		.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+         line-height: 100%;
       }
-      .two-columns h2 {
-         margin: 0;
+
+      a[x-apple-data-detectors=true]{
+         color: inherit !important;
+         text-decoration: inherit !important;
       }
-      ul.social {
-         list-style-type: none;
-         text-align: center;
-         padding: 10px;
-         margin: 20px 0 5px;
-         width: 96%;
+
+      span.Object {
+         color: inherit !important;
       }
-      ul.social li {
-         display: inline;
+      span.Object-hover {
+         color: inherit !important;
+         text-decoration: none !important;
       }
-      .social img {
-         max-width: 40px;
+
+      @media screen and (max-width: 599.98px) {
+
       }
-      .contact {
-         text-align: center;
-         color: #1d4ed8;
-         font-weight: 500;
-         line-height: 30px;
-         padding-bottom: 6%;
+      @media screen and (max-width: 399.98px) {
+
       }
-      .contact a {
-         color: #1d4ed8;
-         text-decoration: none;
-         transition: .2s;
+
+      :root {
+         color-scheme: light dark;
+         supported-color-schemes: light dark;
       }
-      .contact a:hover {
-         color: #fe6b58;
-      }
-      @media (max-width: 600px) {
-         body {
-            padding: 5px;
+      @media (prefers-color-scheme: dark) {
+         body, table {
+            background: #2d2d2d !important;
+            color: #ffffff !important;
          }
-         .banner {
-            margin-bottom: 20px;
-         }
-         .three-columns, .two-columns {
-            width: 96%;
-            margin: 0 0 35px;
-         }
-         .three-columns img {
-            max-width: 155px;
-         }
-         hr.orange {
-            margin-bottom: 30px;
-         }
-         .two-columns.second {
-            padding-left: 15px;
-            padding-bottom: 30px;
+         [data-ogsc] body, table {
+            background: #2d2d2d !important;
+            color: #ffffff !important;
          }
       }
+
    </style>
-</head>
-<body>
-
-   <div class="wrapper">
-      
-      <div class="logo">
-         <a href="https://example.com" target="_blank"><img src="https://res.cloudinary.com/da0d2neas/image/upload/v1710485097/logocontact-removebg-preview.png" alt="HTML5 Logo" title="HTML5 Logo"></a>
-      </div>
-
-      <!-- <a href="https://example.com" target="_blank"><img src="https://i.ibb.co/zQ558kP/banner.png" alt="Banner" title="Banner" class="banner"></a> -->
-
-      <!-- <div class="three-columns">
-         <a href="https://example.com" target="_blank"><img src="https://i.ibb.co/tHQy3gL/mouse.png" alt="Mouse" title="Mouse"></a>
-         <h2>Email Development</h2>
-         <p>There are many different email clients to consider when developing your email template.</p>
-         <div class="button-holder">
-            <a href="https://example.com" target="_blank" class="btn">Learn More</a>
-         </div>
-      </div>
-
-      <div class="three-columns">
-         <a href="https://example.com" target="_blank"><img src="https://i.ibb.co/42MJn1V/phone.png" alt="Phone" title="Phone"></a>
-         <h2>Mobile Friendly</h2>
-         <p>Most emails are opened on mobile devices today, so make sure your design is mobile friendly.</p>
-         <div class="button-holder">
-            <a href="https://example.com" target="_blank" class="btn">HTML Email</a>
-         </div>
-      </div>
-
-      <div class="three-columns">
-         <a href="https://example.com" target="_blank"><img src="https://i.ibb.co/RD0sR6V/computer.png" alt="Computer" title="Computer"></a>
-         <h2>Desktop Clients</h2>
-         <p>For desktop email clients like Outlook, we'll need to pay special attention once we use tables.</p>
-         <div class="button-holder">
-            <a href="https://example.com" target="_blank" class="btn">Development</a>
-         </div>
-      </div> -->
-
-      
-
-      <div class="two-columns">
-         <a href="https://example.com" target="_blank"><img src="https://res.cloudinary.com/da0d2neas/image/upload/v1722358495/pie-chart.png" alt="Pie Chart" title="Pie Chart"></a>
-      </div>
-
-      <div class="two-columns second">
-         <h2>Bienvenido ${emailUser}, a la plataforma de referidos de Contactamericas</h2>
-         <p>Podrás dar seguimiento del estado de tus referidos en el dashboard que construimos para ti con la transparencia que nos caracteriza.</p>
-         <div class="button-holder">
-            <a href="https://example.com" target="_blank" class="btn">Ir al dashboard</a>
-         </div>
-      </div>
-
-     
-
-      <ul class="social">
-         <li><a href="https://example.com" target="_blank"><img src="https://i.ibb.co/5cp6Gtb/facebook.png" alt="Facebook" title="Facebook"></a></li>
-         <li><a href="https://example.com" target="_blank"><img src="https://i.ibb.co/m4PgXq6/twitter.png" alt="Twitter" title="Twitter"></a></li>
-         <li><a href="https://example.com" target="_blank"><img src="https://i.ibb.co/Ttf0YmH/youtube.png" alt="YouTube" title="YouTube"></a></li>
-         <li><a href="https://example.com" target="_blank"><img src="https://i.ibb.co/8brZJJt/instagram.png" alt="Instagram" title="Instagram"></a></li>
-         <li><a href="https://example.com" target="_blank"><img src="https://i.ibb.co/3zn6mW3/linkedin.png" alt="Linkedin" title="Linkedin"></a></li>
-      </ul>
-
-      <p class="contact">
-         <a href="https://contactamericas.com/" target="_blank">https://contactamericas.com/</a><br>
-         <a href="tel:+18005555555">1-800-555-5555</a><br>
-       
-         
-      </p>
-
-   </div> <!-- End of Wrapper -->
    
+	<!--[if mso]>
+		<style type="text/css">
+			body {background-color: #dde0e1 !important;}
+         body, table, td, p, a {font-family: Arial, Helvetica, sans-serif !important;}
+         table {border-spacing: 0 !important;border-collapse: collapse !important;}
+		</style>
+	<![endif]-->
+	
+</head>
+<body class="body" xml:lang="en" style="margin:0;padding:0;min-width:100%;background-color:#dde0e1;">
+
+   <div style="width: 100%; table-layout:fixed; background-color: #dde0e1; color:#242424; font-family: Arial, Helvetica, sans-serif; font-size: 16px; margin: 0 auto 40px;">
+      <div style="max-width: 600px; background-color: #fafdfe; color:#242424; font-family: Arial, Helvetica, sans-serif; font-size: 16px; box-shadow: 0 0 10px rgba(0, 0, 0, .2);margin: 0 auto;">
+
+         <div style="font-size: 0px; color: #fafdfe; mso-line-height-rule: exactly; line-height: 0px; display: none; max-width: 0px; max-height: 0px; opacity: 0; overflow: hidden; mso-hide:all;">
+            This is our preheader text which can be 35-190 characters but 85-100 is recommended.
+            &zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;
+         </div>
+      
+         <!--[if mso]>
+            <table width="600" align="center" style="border-spacing: 0; border-collapse:collapse; color: #3d3d3d;" role="presentation">
+            <tr>
+            <td style="padding:0;">
+         <![endif]-->
+
+         <table align="center" style="border-spacing:0; border-collapse: collapse; color:#242424; font-family: Arial, Helvetica, sans-serif; font-size: 16px; background-color: #fafdfe; margin: 0 auto; padding:0; width: 100%; max-width: 600px;" role="presentation">
+
+
+            <tr>
+               <td style="padding: 0;">
+                  <table width="100%" style="border-spacing: 0;" role="presentation">
+
+                     <tr>
+                        <td style="padding: 4px; background-color: #d5f3f4;">
+                           <div style="font-size: 0; mso-line-height-rule:exactly; line-height: 0; display: none; mso-hide: all;">
+                              &zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;
+                           </div>
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td style="padding: 14px 0 10px 0; text-align: center; background-color: #fff; ">
+                           <a href="https://example.com" target="_blank">
+                              <img src="https://res.cloudinary.com/da0d2neas/image/upload/v1710485097/logocontact-removebg-preview.png" alt="Logo" width="190" style="border: 0;">
+                           </a>
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td style="padding: 0 0 20px 0;">
+                           <a href="https://example.com/1" target="_blank">
+                              <img src="https://mcusercontent.com/474f5b70c3b324277323d4c42/images/80657041-e007-7e23-37ed-2e10ac4f5cac.jpg" alt="Password Reset Banner" width="600" style="border: 0; width: 100%;">
+                           </a>
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td style="padding: 5px 25px 5px 25px; text-align: center;">
+                           <h1 style="font-size: 25px;">¿Olvidaste tu contraseña?</h1>
+                           <h2 style="font-size: 20px;">No hay problema!</h2>
+                           <p style="font-size: 16px; line-height: 20px;">Hola, ${user.name} ${user.lastname}!</p>
+                           <p style="font-size: 16px; line-height: 20px;">¡Hubo una solicitud para cambiar su contraseña!</p>
+                           <p style="font-size: 16px; line-height: 20px;">Si usted no realizó esta solicitud, ignore este email. De lo contrario, porfavor presiona el botón que está debajo para cambiar su password:</p>
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td style="padding: 10px 0 30px 0; text-align: center;">
+                           <a href="${process.env.NEXTAUTH_URL}/auth/forgetpassword/${user.id}" target="_blank">
+                              <img src="https://mcusercontent.com/474f5b70c3b324277323d4c42/images/0f63e7e6-d834-2e03-a0f8-17b043f7763e.png" alt="Reset Your Password" title="Reset Your Password" width="160" style="border: 0;">
+                           </a>
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td style="padding: 20px 0 30px 0; text-align: center; background-color: #d5f3f4;">
+                           <p style="font-size: 16px;color: #000;"><a href="https://example.com/4" style="color: #000; text-decoration: none;color: inherit;">https://contactamericas.com/</a></p>
+                           <p style="font-size: 16px; padding: 5px 0 5px 0; color: #000;">123&#8203; Street Road, City, State 55555</p>
+                        </td>
+                     </tr>
+
+                  </table>
+               </td>
+            </tr>
+
+
+         </table>
+
+         <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+         <![endif]-->
+      
+      </div>
+   </div>
+
 </body>
 </html>
-
-
-<!-- https://w3newbie.imgbb.com/
-https://i.ibb.co/JtckNqn/logo.png
-https://i.ibb.co/zQ558kP/banner.png
-
-https://i.ibb.co/tHQy3gL/mouse.png
-https://i.ibb.co/42MJn1V/phone.png
-https://i.ibb.co/RD0sR6V/computer.png
-https://i.ibb.co/NKdYy92/pie-chart.png
-
-https://i.ibb.co/5cp6Gtb/facebook.png
-https://i.ibb.co/m4PgXq6/twitter.png
-https://i.ibb.co/Ttf0YmH/youtube.png
-https://i.ibb.co/8brZJJt/instagram.png
-https://i.ibb.co/3zn6mW3/linkedin.png
--->
 `,
   };
 

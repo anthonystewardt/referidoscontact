@@ -44,10 +44,10 @@ const DashboardPage = () => {
       </div>
 
       <div className="my-5"> 
-        <div className="w-2/3 flex items-center justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
+        <div className="lg:w-4/5 md:w-2/3 w-full flex items-center justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
           <p>Enlace: <span>{userId &&  `${process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE}/referidos/${userId}`}</span> </p>
           <button
-            className="flex items-center gap-2 font-semibold px-3 py-1 rounded-lg mt-2"
+            className="flex items-center gap-1 font-semibold px-3 py-1 rounded-lg mt-2"
             onClick={handleCopyLink}
           >
             <FiCopy className="h-5 w-5" /> {buttonText}
