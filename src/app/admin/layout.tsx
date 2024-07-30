@@ -40,7 +40,7 @@ const LayoutAdminDashboard = ({children}: Props) => {
       <div className="col-span-2 flex justify-between  flex-col bg-white h-screen">
         <div className="flex flex-col px-10 ">
           <div className="mt-10 text-center flex justify-center">
-            <Image height={100} width={50} src={logo.src} alt="logo" className="h-[100px] w-[160px]" />
+            <img   src={logo.src} alt="logo" className="h-[100px] object-cover w-[160px]" />
           </div>
           <ul className="flex flex-col gap-2 mt-10">
             {/* <li className="px-4 flex items-center gap-3 py-3 rounded-lg bg-sky-100 text-blue-900 w-full">
