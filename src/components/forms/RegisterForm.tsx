@@ -12,6 +12,7 @@ import { EyeSlashFilledIcon } from '@/icons/EyeFilledIcon';
 import { Toaster } from 'react-hot-toast';
 import { notifyError, notifySuccess } from '@/helpers/notifies';
 import { useRouter } from 'next/navigation';
+import { sendEmailWelcome } from '@/helpers/emails/SendEmailToWelcome';
 
 
 
@@ -96,6 +97,7 @@ const RegisterForm = ({type}: Props) => {
       if(response.status === 201) {
         console.log({response})
         notifySuccess(response.message)
+        await sendEmailWelcome(data.email, data.names);
         router.push('/auth/login')
         return;
       }
