@@ -30,7 +30,7 @@ const RegisterPage = () => {
           <SelectRoleCard
             to="/auth/register/employee"
             icon={iconRegister1}
-            title="Empleador"
+            title="Colaborador"
             description={
               "Usuarios que ya se encuentran laborando en la empresa"
             }
