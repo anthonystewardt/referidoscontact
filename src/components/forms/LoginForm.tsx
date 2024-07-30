@@ -2,7 +2,7 @@
 import { signIn } from "next-auth/react";
 import {useRouter} from 'next/navigation'
 import { Input, Button} from "@nextui-org/react";
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler, set } from "react-hook-form"
 
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import { notifyError, notifySuccess } from '@/helpers/notifies';
 import { setCookie } from 'cookies-next';
 import Cookies from 'js-cookie';
+import { Spinner } from "@nextui-org/spinner";
 
 
 interface Props {
@@ -29,12 +30,13 @@ const LoginUserForm = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentErrorMessage, setCurrentErrorMessage] = useState("")
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const [showSpinner, setShowSpinner] = useState(false)
   const router = useRouter()
   
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setCurrentErrorMessage("");
     try {
-     
+      setShowSpinner(true)
       const res = await signIn("credentials", {
         email: data.email,
         password: data.password,
@@ -44,17 +46,21 @@ const LoginUserForm = () => {
       console.log({res})
       if (res!.error) {
         notifyError(res!.error)
+        setShowSpinner(false)
       } else {
         // http://localhost:3000/api/users/email/anthonysa0813@gmail.com
         const userfound = await fetch(`/api/users/email/${data.email}`).then((res) => res.json()).then((data) => {
         Cookies.set('userId', data.users.id)
 
         })
+        setShowSpinner(false)
+        notifySuccess("¡Hola, Bienvenido!");
         router.push('/dashboard')
         router.refresh()
       }
     } catch (error) {
-      console.log({error})
+      console.log({ error })
+      setShowSpinner(false)
       notifyError("Error al registrar usuario") 
     }
   }
@@ -112,7 +118,9 @@ const LoginUserForm = () => {
             </div>
            
             <div className="col-span-6">
-              <Button className="w-full" type="submit" color="primary">Login</Button>
+            <Button className="w-full" type="submit" color="primary">
+              {showSpinner ? <Spinner color="white" />  : "Ingresar"}	
+              </Button>
             </div>
           </div>
         </form>

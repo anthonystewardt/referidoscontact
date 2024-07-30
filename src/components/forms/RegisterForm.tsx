@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import logoContact from '@/../../public/logocontactbg.png';
-import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import {Avatar, Input, SelectItem, Select, Button} from "@nextui-org/react";
 import { useForm, SubmitHandler } from "react-hook-form"
 
@@ -120,115 +120,174 @@ const RegisterForm = ({type}: Props) => {
   return (
     <>
       <Toaster />
-      <form onSubmit={ handleSubmit(onSubmit)} className="my-10" >
-        {
-          currentErrorMessage && (
-            <div className="">
-              <span className="text-xs text-red-500 mb-2">{currentErrorMessage}</span>
-            </div>
-          )
-        }
-          <div className="flex flex-col">
-            <h1 className="text-3xl text-center font-bold ">Registrarse - {type}</h1>
-            <p className="mt-3 text-sm text-gray-600">Llena el siguiente formulario para activar su cuenta de referidos.</p>
+      <form onSubmit={handleSubmit(onSubmit)} className="my-10">
+        {currentErrorMessage && (
+          <div className="">
+            <span className="text-xs text-red-500 mb-2">
+              {currentErrorMessage}
+            </span>
           </div>
-          <div className="grid grid-cols-6 gap-5 mt-5">
-            <div className="col-span-full md:col-span-3">
-              <Input label='DNI'  
-                {...register('dni', {required: true})}
-              />
-              {errors.dni && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-              <Input label='Nombres'
-                {...register('names', {required: true})}
-              />
-              {errors.names && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-              <Input  label='Apellidos'
-                {...register('lastnames', {required: true})}
-              />
-              {errors.lastnames && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-              <Input  label='Correo'
-                {...register('email', {required: true})}
-              />
-              {errors.email && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-            <Select
-            className="w-full"
-            label="Selecciona tu país"
-            placeholder="Selecciona tu país"
-            // value={selectCountrie}
-            {...register('country', {required: true})}
+        )}
+        <div className="flex flex-col">
+          <h1 className="text-3xl text-center font-bold ">
+            Registrarse - {type}
+          </h1>
+          <div className="flex items-center justify-between">
+            <p className="mt-3 text-sm text-gray-600">
+              Llena el siguiente formulario para activar su cuenta de referidos.
+            </p>
+            <Link
+              href="/auth/login"
+              className="flex items-center gap-2 font-semibold underline"
             >
-              {
-                selectedCosuntry.map((country) => (
-                  <SelectItem key={country.cca2} value={country.cca2}
-                  startContent={<Avatar alt="Mexico" className="w-6 h-6" src={country.flags.png} />}
-                  >
-                    {country.translations["spa"].common ?? country.name.common}
-                  </SelectItem>
-                ))
-              }
-             </Select>
-              {errors.country && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-              <Input  label='Celular'
-                {...register('cellphone', {required: true})}
-              />
-              {errors.cellphone && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-            <Input
-              label="Password"
-              variant="bordered"
-              placeholder="Enter your password"
-              {...register('password', {required: true})}
-              endContent={
-                <button className="focus:outline-none " type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
-                  {isVisible ? (
-                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  ) : (
-                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  )}
-                </button>
-              }
-              type={isVisible ? "text" : "password"}
-              className="w-full"
-            />
-              {errors.password && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-full md:col-span-3">
-            <Input
-              label="Password"
-              variant="bordered"
-              placeholder="Enter your password"
-              {...register('confirmPassword', {required: true})}
-              endContent={
-                <button className="focus:outline-none " type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
-                  {isVisible ? (
-                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  ) : (
-                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                  )}
-                </button>
-              }
-              type={isVisible ? "text" : "password"}
-              className="w-full"
-            />
-              {errors.confirmPassword && <span className="text-red-500 text-xs">Este campo es requerido</span>}
-            </div>
-            <div className="col-span-6">
-              <Button className="w-full" type="submit" color="primary">Registrarse</Button>
-            </div>
+              Ya tengo cuenta
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
-        </form>
+        </div>
+        <div className="grid grid-cols-6 gap-5 mt-5">
+          <div className="col-span-full md:col-span-3">
+            <Input label="DNI" {...register("dni", { required: true })} />
+            {errors.dni && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input label="Nombres" {...register("names", { required: true })} />
+            {errors.names && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input
+              label="Apellidos"
+              {...register("lastnames", { required: true })}
+            />
+            {errors.lastnames && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input label="Correo" {...register("email", { required: true })} />
+            {errors.email && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Select
+              className="w-full"
+              label="Selecciona tu país"
+              placeholder="Selecciona tu país"
+              // value={selectCountrie}
+              {...register("country", { required: true })}
+            >
+              {selectedCosuntry.map((country) => (
+                <SelectItem
+                  key={country.cca2}
+                  value={country.cca2}
+                  startContent={
+                    <Avatar
+                      alt="Mexico"
+                      className="w-6 h-6"
+                      src={country.flags.png}
+                    />
+                  }
+                >
+                  {country.translations["spa"].common ?? country.name.common}
+                </SelectItem>
+              ))}
+            </Select>
+            {errors.country && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input
+              label="Celular"
+              {...register("cellphone", { required: true })}
+            />
+            {errors.cellphone && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input
+              label="Password"
+              variant="bordered"
+              placeholder="Enter your password"
+              {...register("password", { required: true })}
+              endContent={
+                <button
+                  className="focus:outline-none "
+                  type="button"
+                  onClick={toggleVisibility}
+                  aria-label="toggle password visibility"
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
+              type={isVisible ? "text" : "password"}
+              className="w-full"
+            />
+            {errors.password && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-full md:col-span-3">
+            <Input
+              label="Password"
+              variant="bordered"
+              placeholder="Enter your password"
+              {...register("confirmPassword", { required: true })}
+              endContent={
+                <button
+                  className="focus:outline-none "
+                  type="button"
+                  onClick={toggleVisibility}
+                  aria-label="toggle password visibility"
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
+              type={isVisible ? "text" : "password"}
+              className="w-full"
+            />
+            {errors.confirmPassword && (
+              <span className="text-red-500 text-xs">
+                Este campo es requerido
+              </span>
+            )}
+          </div>
+          <div className="col-span-6">
+            <Button className="w-full" type="submit" color="primary">
+              Registrarse
+            </Button>
+          </div>
+        </div>
+      </form>
     </>
-  )
+  );
 }
 export default RegisterForm
