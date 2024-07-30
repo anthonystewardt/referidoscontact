@@ -11,7 +11,7 @@ interface Props {
   userId: string
 }
 
-const InfoCreditUserCard =  () => {
+const InfoCreditUserCard =  ({userId}: Props) => {
 
   const [currentId, setCurrentId] = useState("")
   const [ferrealNumber, setFerrealnumber] = useState(0)
@@ -25,7 +25,7 @@ const InfoCreditUserCard =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`/api/users/${currentId}`)
+    const response = await fetch(`/api/users/${userId}`)
     const data: UserResonse = await response.json()
     
     // setFerrealnumber(data.users.credit || 0)

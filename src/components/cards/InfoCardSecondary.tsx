@@ -10,7 +10,7 @@ interface Props {
   userId: string
 }
 
-const InfoCardSecondary =  () => {
+const InfoCardSecondary =  ({userId}: Props) => {
 
   const [currentId, setCurrentId] = useState("")
   const [ferrealNumber, setFerrealnumber] = useState(0)
@@ -23,8 +23,9 @@ const InfoCardSecondary =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`/api/referreals/${currentId}`)
+    const response = await fetch(`/api/referreals/${userId}`)
     const data = await response.json()
+    console.log({dataref: data})
     setFerrealnumber(data.referreal?.length ?? 0)
   }
 

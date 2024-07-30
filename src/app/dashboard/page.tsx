@@ -26,9 +26,21 @@ const DashboardPage = () => {
     <div>
       <h1 className="text-3xl font-semibold">Dashboard</h1>
       <div className="grid grid-cols-9 mt-10 gap-3">
-        <InfoCardSecondary />
-        <InfoCardActive />
-        <InfoCreditUserCard />
+        {
+          userId && (
+            <InfoCardSecondary userId={userId} />
+          )
+        }
+        {
+          userId && (
+            <InfoCardActive userId={userId} />
+          )
+        }
+        {
+          userId && (
+            <InfoCreditUserCard userId={userId} />
+          )
+        }
       </div>
 
       <div className="my-5"> 

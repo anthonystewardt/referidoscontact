@@ -12,7 +12,7 @@ interface Props {
   userId: string
 }
 
-const InfoCardActive =  () => {
+const InfoCardActive =  ({userId}: Props) => {
 
   const [currentId, setCurrentId] = useState("")
   const [ferrealNumber, setFerrealnumber] = useState(0)
@@ -26,7 +26,7 @@ const InfoCardActive =  () => {
   
 
   const getInfo = async () => {
-    const response = await fetch(`/api/referreals/${currentId}`)
+    const response = await fetch(`/api/referreals/${userId}`)
     const data = await response.json()
     console.log(data)
     const referreals = data.referreal?.filter((referreal: any) => referreal.active === true)

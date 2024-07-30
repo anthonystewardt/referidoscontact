@@ -1,3 +1,4 @@
+
 import prisma from '@/libs/db';
 import { NextResponse, NextRequest } from 'next/server'
 
@@ -67,6 +68,30 @@ export async function PUT(request: Request, {params}: Segments) {
   }
 }
 
+// Delete method
+export const DELETE = async (request: Request, { params }: Segments) => {
+  try {
+    const { id } = params
+    const users = await prisma.user.delete({
+      where: {
+        id
+      }
+    })
+    return NextResponse.json({
+      users,
+      status: 200
+    }, {
+      status: 200
+    })
+  } catch (error) {
+    return NextResponse.json({
+      error,
+      status: 500
+    }, {
+      status: 500
+    })
+  }
+}
 
 
 
