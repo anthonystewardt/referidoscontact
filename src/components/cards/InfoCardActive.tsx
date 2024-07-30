@@ -22,13 +22,14 @@ const InfoCardActive =  () => {
     console.log(userId)
     setCurrentId(userId || "")
     getInfo()
-  }, [currentId])
+  }, [])
   
 
   const getInfo = async () => {
     const response = await fetch(`http://localhost:3000/api/referreals/${currentId}`)
-    const data: ReferrealI = await response.json()
-    const referreals = data.referreals?.filter((referreal) => referreal.active === true)
+    const data = await response.json()
+    console.log(data)
+    const referreals = data.referreal?.filter((referreal: any) => referreal.active === true)
     if(!referreals) return setFerrealnumber(0)
     setFerrealnumber(referreals?.length)
   }
