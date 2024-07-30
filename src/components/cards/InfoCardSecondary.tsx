@@ -19,14 +19,14 @@ const InfoCardSecondary =  ({userId}: Props) => {
     const userId = Cookies.get('userId')
     setCurrentId(userId || "")
     getInfo()
-  }, [])
+  }, [userId])
   
 
   const getInfo = async () => {
     const response = await fetch(`/api/referreals/${userId}`)
     const data = await response.json()
-    console.log({dataref: data})
-    setFerrealnumber(data.referreal?.length ?? 0)
+   
+    setFerrealnumber(data.referreals?.length ?? 0)
   }
 
   return (
