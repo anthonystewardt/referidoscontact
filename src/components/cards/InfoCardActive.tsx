@@ -36,12 +36,12 @@ const InfoCardActive =  ({userId}: Props) => {
   }
 
   return (
-    <div className="col-span-3 flex gap-3  px-8 py-4 rounded-lg shadow-sm bg-white">
-          <div className=" rounded-full h-20 w-20 flex items-center justify-center bg-sky-100">
-            <BackpackIcon className="h-10 w-10 text-blue-600" />
+    <div className="md:col-span-3 col-span-full flex gap-3  px-8 py-4 rounded-lg shadow-sm bg-white">
+          <div className=" rounded-full md:h-20 md:w-20  h-10 w-10 flex items-center justify-center bg-sky-100">
+            <BackpackIcon className="md:h-10 md:w-10 text-blue-600" />
           </div>
           <div className="flex flex-col ">
-            <h2 className="text-3xl font-semibold">{
+            <h2 className="text-2xl md:text-3xl font-semibold">{
               `${ferrealNumber}` || 0
               }</h2>
             <p className="text-1xl font-semibold">Aceptados </p>

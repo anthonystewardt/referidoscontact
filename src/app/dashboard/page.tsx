@@ -26,31 +26,25 @@ const DashboardPage = () => {
     <div>
       <h1 className="text-3xl font-semibold">Dashboard</h1>
       <div className="grid grid-cols-9 mt-10 gap-3">
-        {
-          userId && (
-            <InfoCardSecondary userId={userId} />
-          )
-        }
-        {
-          userId && (
-            <InfoCardActive userId={userId} />
-          )
-        }
-        {
-          userId && (
-            <InfoCreditUserCard userId={userId} />
-          )
-        }
+        {userId && <InfoCardSecondary userId={userId} />}
+        {userId && <InfoCardActive userId={userId} />}
+        {userId && <InfoCreditUserCard userId={userId} />}
       </div>
 
-      <div className="my-5"> 
-        <div className="lg:w-4/5 md:w-2/3 w-full flex items-center justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
-          <p>Enlace: <span>{userId &&  `${process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE}/referidos/${userId}`}</span> </p>
+      <div className="my-5">
+        <div className=" lg:w-2/3 w-full flex flex-col md:flex-row md:items-center md:justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
+          <p>
+            <span className='text-blue-800 font-semibold'>Enlace</span>:{" "}
+            <span>
+              {userId &&
+                `${process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE}/referidos/${userId}`}
+            </span>{" "}
+          </p>
           <button
-            className="flex items-center gap-1 font-semibold px-3 py-1 rounded-lg mt-2"
+            className="flex items-center lg:gap-1 font-semibold md:px-3 py-1 rounded-lg mt-2"
             onClick={handleCopyLink}
           >
-            <FiCopy className="h-5 w-5" /> {buttonText}
+            <FiCopy /> {buttonText}
           </button>
         </div>
       </div>
