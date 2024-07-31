@@ -16,7 +16,7 @@ const RegisterPage = () => {
 
 
   return (
-    <div className="h-full md:px-20 px-8  ">
+    <div className="h-full lg:px-20 px-8  ">
       <div className="flex justify-end mt-3 ">
         <img src={logoContact.src} alt="logo" className="h-[100px] w-[160px]" />
       </div>

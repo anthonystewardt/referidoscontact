@@ -131,8 +131,8 @@ const RegisterForm = ({type}: Props) => {
           </div>
         )}
         <div className="flex flex-col">
-          <h1 className="text-3xl text-center font-bold ">
-            Registrarse - {type}
+          <h1 className="text-3xl text-blue-800 mb-5 uppercase text-center font-bold ">
+            Crear cuenta
           </h1>
           <div className="flex items-center justify-between">
             <p className="mt-3 text-sm text-gray-600">

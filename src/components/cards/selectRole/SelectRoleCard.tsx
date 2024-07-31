@@ -13,7 +13,7 @@ interface Props {
 
 const SelectRoleCard = ({icon, title, description, to}: Props) => {
   return (
-    <Link href={to}  className="px-4 py-4 rounded-lg md:w-2/3 block border-2 border-zinc-400 hover:border-blue-500 transition ease-out">
+    <Link href={to}  className="px-4 py-4 rounded-lg lg:w-2/3 block border-2 border-zinc-400 hover:border-blue-500 transition ease-out">
       <div className="grid-cols-6 flex  items-center gap-3">
         <div className="col-span-2">
           <Image src={icon} alt="icon" height={40} width={40} />

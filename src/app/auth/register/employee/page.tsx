@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const EmployeePageRegister = () => {
   return (
-    <div className="px-8 md:px-20  h-full">
+    <div className="px-8  lg:px-20  h-full">
       <div className="flex justify-between items-center">
         <Link href="/auth/register" className="flex items-center cursor-pointer hover:text-blue-900 hover:font-semibold transition ease gap-1 text-sm ">
           <ArrowLeftIcon className="h-6 w-6 cursor-pointer" />
