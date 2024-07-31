@@ -32,10 +32,10 @@ const DashboardPage = () => {
       </div>
 
       <div className="my-5">
-        <div className=" lg:w-2/3 w-full flex flex-col md:flex-row md:items-center md:justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
-          <p>
-            <span className='text-blue-800 font-semibold'>Enlace</span>:{" "}
-            <span>
+        <div className=" lg:w-2/3 w-full overflow-x-auto flex text-ellipsis flex-wrap flex-col md:flex-row md:items-center md:justify-between px-5 py-3 rounded-lg bg-white shadow-xl">
+          <p className="flex flex-wrap">
+            <span className="text-blue-800 font-semibold">Enlace</span>:{" "}
+            <span className=" text-ellipsis whitespace-nowrap overflow-auto">
               {userId &&
                 `${process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE}/referidos/${userId}`}
             </span>{" "}
