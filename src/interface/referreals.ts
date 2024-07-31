@@ -4,19 +4,20 @@ export interface ReferrealI {
 }
 
 export interface Referreal {
-  id:                string;
-  code:              string;
-  userId:            string;
-  active:            boolean;
-  nameReferreal:     string;
+  id: string;
+  code: string;
+  userId: string;
+  active: boolean;
+  nameReferreal: string;
   lastnameReferreal: string;
-  emailReferreal:    string;
-  phoneReferreal:    string;
-  dniReferreal:      string;
-  mountPaid:        number;
-  typePaid:          string;
-  paid?:             boolean;
+  emailReferreal: string;
+  phoneReferreal: string;
+  dniReferreal: string;
+  cvPath?: string;
+  mountPaid: number;
+  typePaid: string;
+  paid?: boolean;
   positionReferreal: string;
-  createdAt:         Date;
-  updatedAt:         Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

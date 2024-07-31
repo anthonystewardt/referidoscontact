@@ -1,6 +1,7 @@
 import logo from '@/../../public/logocontactbg.png';
 import ReferrealForm from '@/components/forms/ReferrealForm';
 import prisma from '@/libs/db';
+import { notFound } from 'next/navigation';
 
 
 
@@ -20,9 +21,7 @@ const ReferidoPage = async  ({params}: Props ) => {
   })
 
   if(!refer) {
-    return {
-      notFound: true
-    }
+    notFound()
   }
 
 

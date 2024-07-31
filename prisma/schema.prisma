@@ -49,6 +49,7 @@ model Referreal {
   dniReferreal String
   typePaid     String @default("credit")
   mountPaid    Float  @default(0)
+  cvPath     String  @default("")
   positionReferreal String
   paid     Boolean  @default(false)
   createdAt DateTime @default(now())

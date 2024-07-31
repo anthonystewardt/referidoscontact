@@ -1,33 +1,76 @@
-import prisma from '@/libs/db';
-import { NextResponse, NextRequest } from 'next/server'
+import prisma from "@/libs/db";
+import { NextResponse, NextRequest } from "next/server";
+import path from "path";
+import { writeFile, mkdir } from "fs/promises";
 
-export async function GET(request: Request) { 
+export async function GET(request: Request) {
   try {
     const referreal = await prisma.referreal.findMany({
       include: {
-        User: true
-      }
-    })
-    return NextResponse.json({ referreal, status: 200 }, { status: 200 })
+        User: true,
+      },
+    });
+    return NextResponse.json({ referreal, status: 200 }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: error }, { status: 500 })
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal Server Error", error: error },
+      { status: 500 }
+    );
   }
-  
 }
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json()
+    const formData = await request.formData();
+    const file = formData.get("file");
+
+    if (!file) {
+      return NextResponse.json(
+        { message: "No se ha encontrado el archivo", status: 404 },
+        { status: 404 }
+      );
+    }
+
+    const buffer = Buffer.from(await (file as Blob).arrayBuffer());
+    const filename = (file as File).name.replaceAll(" ", "_");
+    const directoryPath = path.join(process.cwd(), "public/assets/");
+
+    try {
+      await mkdir(directoryPath, { recursive: true });
+    } catch (dirError) {
+      console.error("Error creating directory:", dirError);
+      return NextResponse.json(
+        { message: "Error creating directory", error: dirError },
+        { status: 500 }
+      );
+    }
+
+    const filePath = path.join(directoryPath, filename);
+
+    try {
+      await writeFile(filePath, buffer);
+    } catch (fileError) {
+      console.error("Error writing file:", fileError);
+      return NextResponse.json(
+        { message: "Error writing file", error: fileError },
+        { status: 500 }
+      );
+    }
+
+    const data = JSON.parse(formData.get("data") as string);
+
     const userFound = await prisma.user.findUnique({
       where: {
-        id: data.userId
-      }
-    })
+        id: data.userId,
+      },
+    });
 
-    // return NextResponse.json({ data }, { status: 200 })
-
-    if(!userFound) {
-      return NextResponse.json({ message: 'Usuario no encontrado', status: 404 }, { status: 404 })
+    if (!userFound) {
+      return NextResponse.json(
+        { message: "Usuario no encontrado", status: 404 },
+        { status: 404 }
+      );
     }
 
     const referObject = await prisma.referreal.create({
@@ -40,13 +83,20 @@ export async function POST(request: Request) {
         positionReferreal: data.job,
         userId: data.userId,
         active: false,
-        code: data.userId
-      }
-    })
+        code: data.userId,
+        cvPath: path.join("public/assets/", filename), // Assuming cvPath is a string field in your prisma schema
+      },
+    });
 
-    return NextResponse.json({ message: "se guardo el referido", status: 201, refer: referObject }, { status: 200 })
+    return NextResponse.json(
+      { message: "Se guardó el referido", status: 201, refer: referObject },
+      { status: 201 }
+    );
   } catch (error) {
-    console.log({error})
-    return NextResponse.json({ message: error }, { status: 500 })
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal Server Error", error: error },
+      { status: 500 }
+    );
   }
 }
